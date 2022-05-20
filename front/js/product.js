@@ -8,12 +8,12 @@
 })();
 
 function getProductId() {
-    return new URL(location.href).searchParams.get("id"); //Récupération de l'ID avec location (utilisation de la console)
+    return new URL(location.href).searchParams.get("id"); //Récupération de l'ID avec location (utilisation de la console puis ctrl+c/ctrl+v)
 };
 
-//Fetch des données produits du Array
+//Fetch des données produits du Array comme dans la première partie du projet
 function getProduct(productId) {
-    return fetch("http://localhost:3000/api/products/" + productId)
+    return fetch("http://localhost:3000/api/products/" + productId) // Je n'arrive pas a le faire fonctionner avec ".../product?id=${productId}" du coup j'utilise " + productId"
     .then(function(productsCards) {
         return productsCards.json();
     })
@@ -55,4 +55,5 @@ function displayProduct(product) {
     for (let i = 0; i < colorOptions.length; i++) {
         itemColor.innerHTML += `<option value="${colorOptions[i]}">${colorOptions[i]}</option>`; //Fonctionne (Nécessité absolue de créer une boucle for - ? fonctionne pas si rentrés un par un)
     }
+    //Je n'arrive pas à rajouter un .catch(err)
 }
