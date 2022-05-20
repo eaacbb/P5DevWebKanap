@@ -28,7 +28,7 @@ function getProduct(productId) {
 }
 
 //Déclaration des variables correspondantes aux classes des DIV a implémenter en HTML
-const sectionItem = document.querySelector(".item"); //Variable crée pour afficher une erreur à l'utilisateur
+const sectionItem = document.querySelector(".item"); //Variable crée pour afficher une erreur à l'utilisateur (je n'arrive pas a créer l'erreur, essayer en utilisant des .then puis .catch dans displayProduct)
 const itemImg = document.querySelector(".item__img");
 const itemTitle = document.getElementById("title");
 const itemPrice = document.getElementById("price");
@@ -40,7 +40,7 @@ console.log(itemImg.innerHTML); //Fonctionne grâce a document.querySelector et 
 console.log(itemTitle.innerHTML);
 console.log(itemPrice.innerHTML);
 console.log(itemDesc.innerHTML);
-console.log(itemColor.innerHTML); //Est bien liée mais necessite quelque chose en plus pour implémenter
+console.log(itemColor.innerHTML); //Est bien liée mais necessitais quelque chose (une boucle) en plus pour implémenter
 
 //Fonction d'implémentation des donnée du produit en HTML
 function displayProduct(product) {
