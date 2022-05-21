@@ -66,3 +66,9 @@ function getTotalPrice(){
     }
     return total; //Donne le prix total
 }
+
+//Faire apparaitre le nombre d'article sur la page
+const totalQty = document.getElementById("totalQuantity");
+console.log(totalQty.innerHTML); //Vérifie que l'élément à bien été récupéré
+
+//Faire apparaitre le prix total sur la page

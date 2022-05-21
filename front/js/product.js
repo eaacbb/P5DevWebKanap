@@ -57,3 +57,5 @@ function displayProduct(product) {
     }
     //Je n'arrive pas à rajouter un .catch(err)
 }
+
+//Fonction pour faire ajouter le produit au panier quand le bouton est cliqué
