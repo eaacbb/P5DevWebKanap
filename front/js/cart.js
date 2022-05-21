@@ -46,3 +46,23 @@ function changeQuantity(product, quantity) {
         }
     }
 }
+
+//Fonction de calcul de la quantité de produits dans le panier
+function getNumberProduct() {
+    let cart = getCart(); //Récupère le panier
+    let number = 0;
+    for(let product of cart) {
+        number += product.quantity;
+    }
+    return number; //Donne la quantité
+}
+
+//Fonction de calcul du prix total du panier
+function getTotalPrice(){
+    let cart = getCart(); //Récupère le panier
+    let total = 0;
+    for(let product of cart) {
+        total += product.quantity * product.price; //Multiplie la quantité de produits par leurs prix
+    }
+    return total; //Donne le prix total
+}
