@@ -78,3 +78,33 @@ totalQty.innerHTML = `${number}`;
 const totalPrice = document.getElementById("totalPrice"); //Récupère l'élément HTML
 console.log(totalPrice.innerHTML); //Vérifie que l'élément à bien été récupéré
 totalPrice.innerHTML = `${total}`;
+
+//Afficher les produits sur le panier
+cartItems = document.getElementById("cart__items")
+let cart = JSON.parse(localStorage.getItem("cart"));
+console.table(cart);
+for (let i = 0; i < cart.length; i++) {
+    cartItems.innerHTML += `
+        <article class="cart__item" data-id=${cart[i].id} data-color="${cart[i].colors}">
+            <div class="cart__item__img">
+                <img src=${""} alt=${""}>
+            </div>
+            <div class="cart__item__content">
+                <div class="cart__item__content__description">
+                    <h2>${cart[i].name}</h2>
+                    <p>${cart[i].colors}</p>
+                    <p>${cart[i].price} € x ${cart[i].quantity} = ${(cart[i].price * cart[i].quantity)} €</p>
+                </div>
+                <div class="cart__item__content__settings">
+                    <div class="cart__item__content__settings__quantity">
+                        <p>Qté : </p>
+                        <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${cart[i].quantity}">
+                    </div>
+                    <div class="cart__item__content__settings__delete">
+                        <p></br></p>
+                        <button type="button" id="deleteItem">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </article>`
+}
