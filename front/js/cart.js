@@ -56,6 +56,7 @@ function getNumberProduct() {
     }
     return number; //Donne la quantité
 }
+let number = getNumberProduct(); //Défini la variable number, résultat de la fonction getNumberProduct
 
 //Fonction de calcul du prix total du panier
 function getTotalPrice(){
@@ -66,9 +67,14 @@ function getTotalPrice(){
     }
     return total; //Donne le prix total
 }
+let total = getTotalPrice(); //Défini la variable total, résultat de la fonction getTotalPrice
 
 //Faire apparaitre le nombre d'article sur la page
-const totalQty = document.getElementById("totalQuantity");
+const totalQty = document.getElementById("totalQuantity"); //Récupère l'élément HTML
 console.log(totalQty.innerHTML); //Vérifie que l'élément à bien été récupéré
+totalQty.innerHTML = `${number}`;
 
 //Faire apparaitre le prix total sur la page
+const totalPrice = document.getElementById("totalPrice"); //Récupère l'élément HTML
+console.log(totalPrice.innerHTML); //Vérifie que l'élément à bien été récupéré
+totalPrice.innerHTML = `${total}`;

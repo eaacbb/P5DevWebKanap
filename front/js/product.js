@@ -42,7 +42,7 @@ console.log(itemPrice.innerHTML);
 console.log(itemDesc.innerHTML);
 console.log(itemColor.innerHTML); //Est bien liée mais necessitais quelque chose (une boucle) en plus pour implémenter
 
-//Fonction d'implémentation des donnée du produit en HTML
+//Fonction d'implémentation des données du produit en HTML
 function displayProduct(product) {
     itemImg.innerHTML = `<img src=${product.imageUrl} alt="${product.altTxt}">`; //Problème réglé avec querySelector
     itemTitle.innerHTML = product.name;
