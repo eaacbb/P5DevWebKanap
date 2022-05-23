@@ -80,14 +80,15 @@ console.log(totalPrice.innerHTML); //Vérifie que l'élément à bien été réc
 totalPrice.innerHTML = `${total}`;
 
 //Afficher les produits sur le panier
-cartItems = document.getElementById("cart__items")
-let cart = JSON.parse(localStorage.getItem("cart"));
+cartItems = document.getElementById("cart__items"); //Récupérer l'élément HTML à modifier
+let cart = JSON.parse(localStorage.getItem("cart")); //Déclarer la variable cart qui recupère les produits contenus dans le array localstorage
 console.table(cart);
 for (let i = 0; i < cart.length; i++) {
+    fetch("http://localhost:3000/api/products/" + cart[i].id) //Fetch du array des produits pour récupérer les bons id
     cartItems.innerHTML += `
         <article class="cart__item" data-id=${cart[i].id} data-color="${cart[i].colors}">
             <div class="cart__item__img">
-                <img src=${""} alt=${""}>
+                <img src=${cart[i].imageURL} alt=${cart[i].altTxt}>
             </div>
             <div class="cart__item__content">
                 <div class="cart__item__content__description">
