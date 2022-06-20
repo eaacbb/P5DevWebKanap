@@ -9,6 +9,7 @@ const itemQuantityDiv = document.getElementsByClassName("cart__item__content__se
 const totalQty = document.getElementById("totalQuantity");
 const totalPrice = document.getElementById("totalPrice");
 
+                //Boucle d'implémentation des produits du panier
 if (cart != null) {
     for (let i = 0; i < cart.length; i++) {
         fetch("http://localhost:3000/api/products/" + cart[i]._id)
@@ -40,6 +41,55 @@ if (cart != null) {
               </div>
              </div>
           </article>`
+                //Suppression de l'article
+          for (let i = 0; i < deleteItem.length; i++) {
+            deleteItem[i].addEventListener("click", () => {
+              articleToDel = deleteItem[i].closest('article');
+              const artColor = articleToDel.dataset.color
+              const idColor = articleToDel.id
+              cart = cart.filter(cart => (artColor || idColor) != (cart.color || cart._id));
+              localStorage.setItem('cartArray', JSON.stringify(cart));
+              document.location.reload()
+            })
+          }
+                //Calcul du nombre d'articles et du prix total
+          let totalOfPrice = 0
+          let totalOfArticle = 0
+          for (let i = 0; i < cart.length; i++) {
+            totalOfPrice += cart[i].quantity * data.price;
+            totalOfArticle += cart[i].quantity
+          }
+          totalPrice.innerHTML = `${totalOfPrice}`;
+          totalQty.innerHTML = `${totalOfArticle}`;
+                //Modification de la quantité
+          for (let i = 0; i < itemQuantityDiv.length; i++) {
+              itemQuantityDiv[i].addEventListener("click", (event) => {
+              itemModif = itemQuantityDiv[i].closest('article');
+              const idOfItem = itemModif.id
+              const ColorOfItem = itemModif.dataset.color
+              let quantiteAjout = itemModif
+              quantiteAjout = Number.parseInt(event.target.value);
+              let index = cart.findIndex(cart => (idOfItem === cart._id) && (cart.color === ColorOfItem));
+              cart[index].quantity = quantiteAjout;
+              localStorage.setItem('panier', JSON.stringify(cart))
+                //Modification du prix total d'un article en fonction de la quantité
+              let modPrice = document.getElementsByClassName("total");
+              if (cart[index].quantity == 0) {
+                document.location.reload()
+              } else {
+                modPrice[index].innerHTML = `${data.price}€ x ${cart[index].quantity} = ${(data.price * cart[index].quantity)}€`
+              }
+                //Modification du prix total
+              let totalOfPrice = 0
+              let totalOfArticle = 0
+              for (let i = 0; i < cart.length; i++) {
+                totalOfPrice = totalOfPrice + (cart[i].quantity * data.price);
+                totalOfArticle = totalOfArticle + cart[i].quantity
+              }
+              totalPrice.innerHTML = `${totalOfPrice}`;
+              totalQty.innerHTML = `${totalOfArticle}`;
+            })
+          }
         })
     }
 }
